@@ -17,7 +17,7 @@ do
     FILE_PATH=$(realpath $FILE)
       # mv ~/.${FILE} ~/olddotfiles/${FILE} 2> /dev/null
     #if the file exist, then back it up to olddotfiles
-    [[ -e ~/.${FILE} ]] && mv ~/.${FILE} ~/olddotfiles/${FILE} 
+    [[ ! -L ~/.${FILE} ]] && mv ~/.${FILE} ~/olddotfiles/${FILE} #if its not a link, then back it up.
     ln -s $FILE_PATH ~/.${FILE}
 done
 
@@ -28,8 +28,8 @@ for FILE in $FILES
 do
     FILE_PATH=$(realpath $FILE)
     #mv ~/.config/${FILE} ~/olddotfiles/config/${FILE} 2> /dev/null
-    [[ -e ~/.config/${FILE} ]] && mv ~/.config/${FILE} ~/olddotfiles/config
-    ln -s $FILE_PATH ~/.config/${FILE}
+    [[ ! -L ~/.config/${FILE} ]] && mv ~/.config/${FILE} ~/olddotfiles/config #only back up if it's not a link.
+    ln -s $FILE_PATH ~/.config
 done
 
     
