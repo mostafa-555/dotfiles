@@ -23,7 +23,7 @@ done
 
 #the files in .config
 cd config
-FILES=$(find . -maxdepth 1 | xargs -I FILE basename FILE | grep -v "\.") #its weired , i know.
+FILES=$(find . -maxdepth 1 | xargs -I FILE basename FILE | grep -v "^\.") #its weired , i know.
 for FILE in $FILES
 do
     FILE_PATH=$(realpath $FILE)

@@ -182,14 +182,14 @@ mode "$systemctl"{
 }
 
 #specifying the colors 
-set $backgr #002b30  
+set $backgr #002b36
 set $text   #2aa198
 set $border #268bd2
 	
 # class                 border  backgr. text    indicator child_border
 client.focused          $border $backgr $text   #99ff99   $border
 client.focused_inactive #333333 $backgr #ffffff #ffffff   #ffffff
-client.unfocused        $backgr $backgr $text   #6b6b47   $text
+client.unfocused        $backgr $backgr $text   #6b6b47   839496
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 

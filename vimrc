@@ -17,3 +17,12 @@ map <C-n> :bnext <CR>
 map <C-p> :bprevious <CR>
 
 set shiftwidth=4 softtabstop=4 expandtab
+
+
+" Solarized Dark
+syntax enable
+"set t_Co=256
+"let g:solarized_termcolors=16
+let g:solarized_termtrans=1
+set background=dark
+colorscheme solarized
