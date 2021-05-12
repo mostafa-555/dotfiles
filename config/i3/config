@@ -230,4 +230,4 @@ bindsym $mod+b bar mode toggle ; exec $nsi nm-applet ; exec $nsi volumeicon
 bindsym $mod+Tab exec $nsi rofi -show window
 
 
-bindsym $mod+d exec dmenu_run -l 7 -p "launch:" -nb "#002b30"  -nf "$text" -sf "#002b30" -sb "$text" 
+bindsym $mod+d exec dmenu_run -l 7 -p "launch:" -nb "$backgr"  -nf "$text" -sf "$backgr" -sb "$text" 
