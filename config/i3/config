@@ -163,9 +163,9 @@ bindsym XF86MonBrightnessDown exec $nsi $scripts/brightness2.sh -4
 exec $nsi "setxkbmap -option 'grp:alt_shift_toggle' -layout us,ar -variant ,qwerty"
 
 #volume and sound control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer  set Master toggle
+bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5 
+bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5    
+bindsym XF86AudioMute exec pulsemixer --toggle-mute 
 
 #shutdown, restart, lock
 set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
