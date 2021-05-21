@@ -39,6 +39,7 @@ smart_borders on
 bindsym XF86RFKill exec wifi toggle
 
 # keybinds for starting applications
+    bindsym $mod+y exec ~/Scripts/youtube-dl.sh
 	bindsym $mod+Ctrl+0 exec $terminal -e "cmatrix -u 6  -b"
 	bindsym Print  exec $nsi xfce4-screenshooter
 #	bindsym $mod+d exec $nsi dmenu_run -l 10 -p "launch:"
@@ -201,8 +202,8 @@ bar {
 	workspace_min_width 40
 	#it makes the tray  icons bigger 
 	#tray_padding 4
-	separator_symbol "..."
-	mode hide
+	separator_symbol "||"
+	mode dock
 	modifier $mod+mod1
 	font pango:monospace bold 8, Font Awesome bold 8
 	position top
