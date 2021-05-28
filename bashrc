@@ -131,4 +131,4 @@ export PS1='[\[\e[1;36m\]\u\[\e[1;31m\]:\[\e[0;35m\]\w\[\e[00m\]]\[\e[1;32m\]\$ 
 export EDITOR="vim"
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash

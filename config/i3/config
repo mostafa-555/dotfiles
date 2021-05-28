@@ -123,6 +123,8 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 # switch to workspace
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -232,3 +234,8 @@ bindsym $mod+Tab exec $nsi rofi -show window
 
 
 bindsym $mod+d exec dmenu_run -l 7 -p "launch:" -nb "$backgr"  -nf "$text" -sf "$backgr" -sb "$text" 
+
+#focus follow mouse no ^_^
+focus_follows_mouse no
+
+

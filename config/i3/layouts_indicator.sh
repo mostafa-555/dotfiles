@@ -1,8 +1,6 @@
 #!/bin/bash
-
-LAYOUT=$(xset -q|grep LED| awk '{ print $10 }')
-[[ "$LAYOUT" = "00000000" ]] && echo "us" || echo "ar"
-
+LAYOUT=$(xset -q | awk 'NR==2 {print $NF}')
+[[ "$LAYOUT" = "00000000" ]] && echo "US" || echo "AR"
 
 
 
