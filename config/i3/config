@@ -50,9 +50,11 @@ bindsym XF86RFKill exec wifi toggle
 	bindsym $mod+q exec qutebrowser	
 
 #make some windows floating
+	for_window [class="XTerm"] floating enable
 	for_window [class="Nitrogen"] floating enable
 	for_window [class="celluloid"] floating enable
 	for_window [title="Event Tester"] floating enable
+	for_window [class="PacketTracer7"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -201,16 +203,18 @@ client.background       #ffffff
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	workspace_min_width 40
-	#it makes the tray  icons bigger 
-	#tray_padding 4
-	separator_symbol "||"
-	mode dock
-	modifier $mod+mod1
-	font pango:monospace bold 8, Font Awesome bold 8
-	position top
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	#i3bar_command i3bar --transparency
+    workspace_min_width 40
+    #it makes the tray  icons bigger 
+    #tray_padding 4
+    separator_symbol "||"
+    mode dock
+    modifier $mod+mod1
+    font pango:monospace bold 8, Font Awesome bold 8
+    position top
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    #output LVDS-1
+    #i3bar_command i3bar --transparency
+    tray_output primary    #show the bar in the primary screen only
 
  colors {
 
@@ -239,3 +243,12 @@ bindsym $mod+d exec dmenu_run -l 7 -p "launch:" -nb "$backgr"  -nf "$text" -sf "
 focus_follows_mouse no
 
 
+#resizing
+bindsym $mod+ctrl+l resize grow right 10 px
+bindsym $mod+ctrl+k resize grow up 10 px
+bindsym $mod+ctrl+j resize grow down 10 px
+bindsym $mod+ctrl+h resize grow left 10 px
+
+#dual monitor
+bindsym $mod+shift+n move workspace to output right
+bindsym $mod+shift+p move workspace to output left

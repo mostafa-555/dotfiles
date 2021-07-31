@@ -6,13 +6,8 @@
 
 config_version: 2
 settings:
-  auto_save.session:
-    global: true
-  backend:
-    global: webengine
-  colors.tabs.bar.bg:
-    global: darkgray
-  colors.tabs.even.bg:
-    global: '#555555'
-  colors.tabs.even.fg:
-    global: white
+  bindings.commands:
+    global:
+      normal:
+        J: tab-prev
+        K: tab-next
