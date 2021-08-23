@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/haman/Scripts'
 let g:netrw_dirhist_2='/home/haman/Desktop/c++/assignment1_c2'
+let g:netrw_dirhist_3='/usr/share/doc/rtorrent/examples'
+let g:netrw_dirhist_4='/home/haman/git/alacritty-0.9.0/alacritty'
+let g:netrw_dirhist_5='/home/haman/Scripts'
