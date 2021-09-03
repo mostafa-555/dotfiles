@@ -14,10 +14,10 @@ bindsym $mod+BackSpace exec ~/Scripts/dmconf
 
 #gaps 
 	#bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-	bindsym $mod+Shift+f gaps inner all toggle 10; gaps outer all toggle 5
+	bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 5
 	
-	gaps inner 10
-	gaps outer 5
+	gaps inner 5
+	gaps outer 3
 	bindsym $mod+i			gaps inner current minus1
 	bindsym $mod+Shift+i		gaps inner current plus 1
 	bindsym $mod+o			gaps outer current minus1
@@ -29,21 +29,14 @@ smart_borders on
 
 #startup applications
 	exec dunst
-	exec $terminal -e "cmatrix -u 6  -b -C blue"
-	exec_always $nsi nitrogen --restore
-	exec $nsi compton -b 
-	exec $nsi volumeicon 
-	exec $nsi nm-applet 
 
 #wifi switcher
 bindsym XF86RFKill exec wifi toggle
 
 # keybinds for starting applications
     bindsym $mod+y exec ~/Scripts/youtube-dl.sh
-	bindsym $mod+Ctrl+0 exec $terminal -e "cmatrix -u 6  -b"
 	bindsym Print  exec $nsi xfce4-screenshooter
 #	bindsym $mod+d exec $nsi dmenu_run -l 10 -p "launch:"
-	bindsym $mod+grave exec $nsi rofi -show drun
 	bindsym $mod+Return exec $nsi $terminal
 	bindsym $mod+Home exec $nsi pcmanfm
 	bindsym $mod+Ctrl+1 exec $nsi $terminal -e htop 
@@ -194,7 +187,7 @@ set $border #268bd2
 # class                 border  backgr. text    indicator child_border
 client.focused          $border $backgr $text   #99ff99   $border
 client.focused_inactive #333333 $backgr #ffffff #ffffff   #ffffff
-client.unfocused        $backgr $backgr $text   #6b6b47   839496
+client.unfocused        $backgr $backgr $text   #6b6b47   #000001
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
@@ -211,7 +204,7 @@ bar {
     modifier $mod+mod1
     font pango:monospace bold 8, Font Awesome bold 8
     position top
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    status_command i3status -c ~/.config/i3/i3status.conf #i3blocks -c ~/.config/i3/i3blocks.conf
     #output LVDS-1
     #i3bar_command i3bar --transparency
     tray_output primary    #show the bar in the primary screen only
@@ -231,7 +224,7 @@ bar {
 }
 
 #hide i3bar
-bindsym $mod+b bar mode toggle ; exec $nsi nm-applet ; exec $nsi volumeicon
+bindsym $mod+b bar mode toggle 
 
 # switching window with win+tab
 bindsym $mod+Tab exec $nsi rofi -show window

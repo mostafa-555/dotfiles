@@ -6,7 +6,7 @@ allow_bold = false
 #cell_width_scale = 1.0
 clickable_url = true
 dynamic_title = true
-font = ubuntu mono regular 14
+font = ubuntu mono regular 16
 #fullscreen = true
 #icon_name = terminal
 mouse_autohide = true
@@ -93,7 +93,7 @@ foreground = #839496
 foreground_bold = #eee8d5
 #foreground_dim = #888888
 #background = #002b36
-background = rgba(0, 43, 54, 0.9)
+background = rgba(0, 43, 54, 0.95)
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
