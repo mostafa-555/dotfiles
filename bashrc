@@ -1,3 +1,4 @@
+export PS1="\[\033[38;5;69m\]\u\[\e[0m\]: \[\e[38;5;216m\]\W\[\e[0m\] \$ "
 
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -38,32 +39,7 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -104,20 +80,12 @@ fi
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/Scripts:$PATH"
 
-#customized prompt
-export PS1='[\[\e[1;36m\]\u\[\e[1;31m\]:\[\e[0;35m\]\w\[\e[00m\]]\[\e[1;32m\]\$ \[\e[00m\]'
-
-
-# Have less display colours
-# from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
-	export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-	export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-	export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
-	export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-	export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-	export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-	export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-	export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+export LESSS_TERMCAP_md=$'\e[38;5;69m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[38;5;216m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[48;5;234;38;5;69m'
+export LESS_TERMCAP_se=$'\e[0m' 
 
 
 # Import colorscheme from 'wal' asynchronously

@@ -2,62 +2,13 @@
 
 #setting up some variables
 set $mod Mod4
-set $terminal termite
+set $terminal alacritty
 set $nsi --no-startup-id
 set $scripts ~/Scripts
 
-#start pywal
-#exec_always $nsi wal -R --vte
-
-# opening up a config file 
-bindsym $mod+BackSpace exec ~/Scripts/dmconf 
-
-#gaps 
-	#bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-	bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 5
-	
-	gaps inner 5
-	gaps outer 3
-	bindsym $mod+i			gaps inner current minus1
-	bindsym $mod+Shift+i		gaps inner current plus 1
-	bindsym $mod+o			gaps outer current minus1
-	bindsym $mod+Shift+o		gaps outer current plus 1
-	smart_gaps on
-
-# Activate smart borders (always)
-smart_borders on
-
-#startup applications
-	exec dunst
-
-#wifi switcher
-bindsym XF86RFKill exec wifi toggle
-
-# keybinds for starting applications
-    bindsym $mod+y exec ~/Scripts/youtube-dl.sh
-	bindsym Print  exec $nsi xfce4-screenshooter
-#	bindsym $mod+d exec $nsi dmenu_run -l 10 -p "launch:"
-	bindsym $mod+Return exec $nsi $terminal
-	bindsym $mod+Home exec $nsi pcmanfm
-	bindsym $mod+Ctrl+1 exec $nsi $terminal -e htop 
-	bindsym $mod+q exec qutebrowser	
-
-#make some windows floating
-	for_window [class="XTerm"] floating enable
-	for_window [class="Nitrogen"] floating enable
-	for_window [class="celluloid"] floating enable
-	for_window [title="Event Tester"] floating enable
-	for_window [class="PacketTracer7"] floating enable
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace bold 9
-font pango: Font Awesome 9
-
-# remove the titlebar for the windows
-	#for_window [class=".*"] border pixel 1
-	for_window [class="^.*"] border pixel 2
-	#new_window 1pixel
+font pango:monospace Ubuntu Mono 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -66,44 +17,34 @@ floating_modifier $mod
 bindsym $mod+Escape kill
 
 # change focus
-	bindsym $mod+h focus left
-	bindsym $mod+j focus down
-	bindsym $mod+k focus up
-	bindsym $mod+l focus right
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-	bindsym $mod+Left focus left
-	bindsym $mod+Down focus down
-	bindsym $mod+Up focus up
-	bindsym $mod+Right focus right
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
 
 # move focused window
-	bindsym $mod+Shift+h move left
-	bindsym $mod+Shift+j move down
-	bindsym $mod+Shift+k move up
-	bindsym $mod+Shift+l move right
+    bindsym $mod+Shift+h move left
+    bindsym $mod+Shift+j move down
+    bindsym $mod+Shift+k move up
+    bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-	bindsym $mod+Shift+Left move left
-	bindsym $mod+Shift+Down move down
-	bindsym $mod+Shift+Up move up
-	bindsym $mod+Shift+Right move right
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
 
-# split orientation
-#bindsym $mod+h split h;exec notify-send 'tile horizontally'
-#bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+t split toggle
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+#..
 popup_during_fullscreen smart
-
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+slash layout toggle tabbed toggle split
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -117,14 +58,113 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+Shift+a focus child
 
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+#reload i3
+bindsym $mod+r reload
+	
+#shutdown, restart, lock
+set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
+bindsym Ctrl+mod1+Delete mode "$systemctl"
+mode "$systemctl"{
+	bindsym r exec systemctl reboot -i  
+	bindsym s exec systemctl suspend -i;  mode "default" ; exec i3lock -c 000000
+	bindsym p exec systemctl poweroff -i
+	bindsym l exec  i3lock -c 002b30 ; mode "default"
+	bindsym e exit 
+
+	bindsym Escape mode "default"
+	bindsym Return mode "default"
+}
+
+#specifying the colors 
+set $black  #000000
+set $white  #bbbbbb
+set $gray   #4e4e4e
+	
+# class                 border  backgr. text    indicator child_border
+client.focused          $white  $black  $white  $white    $white
+client.focused_inactive $black  $black  $white  #99ff99   $black
+client.unfocused        $white  $black  $gray   $gray     $gray
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+#I3BAR
+bar {
+    #height 20
+    workspace_min_width 40
+    #it makes the tray  icons bigger 
+    #tray_padding 4
+    separator_symbol "|"
+    mode hide
+    modifier $mod+mod1
+    font pango:DejaVu Sans Mono, FontAwesome Mono 8
+    position top
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+    colors {
+        background $black
+        statusline $white
+        separator  $white
+#                          Border      background     text
+        focused_workspace  $white      $white         $black
+        active_workspace   $black      $white         $black
+        inactive_workspace $black      $black         $white
+        urgent_workspace   #2f343a     #900000        #000000
+        binding_mode       $white      $white         $black
+        }
+    }
+
+#hide i3bar
+bindsym $mod+b bar mode toggle 
+
+#focus follow mouse no ^_^
+focus_follows_mouse no
+
+#speed up the cursor
+exec xset r rate 250 45
+
+
+
+#----------------------------------WINDOWS-------------------------------------
+#default orientaion of the windows
+default_orientation vertical
+
+# remove the titlebar for the windows
+    for_window [class=".*"] border pixel 2
+
+#assign windows to workspaces
+    assign [class="Firefox"] $ws2
+    assign [class="mpv"] $ws3
+    for_window [title="pdf"] move container to workspace $ws4, floating disable
+    assign [class="PacketTracer"] $ws5
+
+#make some windows floating
+    for_window [class=".*"] floating enable
+    for_window [workspace=$ws1 class="Alacritty"] floating disable
+    for_window [class="Firefox"] floating disable
+    for_window [class="mpv"] resize set 960 360
+    for_window [class="Nitrogen"] resize set 1000, move position center
+    for_window [class="Pcmanfm"] resize set 480 640, move position center
+    for_window [class="PacketTracer"] floating disable
+
+#---------------------------------WORKSPACES-----------------------------------
+set $ws1 1:Terminals
+set $ws2 2:Browser
+set $ws3 3:Media
+set $ws4 4
+set $ws5 5
+
 # switch to workspace
-bindsym $mod+n workspace next
-bindsym $mod+p workspace prev
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
+bindsym $mod+period workspace next
+bindsym $mod+comma workspace prev
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -134,114 +174,105 @@ bindsym $mod+0 workspace 10
 #enable back and forth 
 workspace_auto_back_and_forth yes
 
+#make workspace 2 tabbed
+for_window [workspace=$ws2] layout tabbed
+
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+#-----------------------------------GAPS--------------------------------------
+#gaps 
+    #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
+    bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 3
+    
+    gaps inner 5
+    gaps outer 4
+    bindsym $mod+i			gaps inner current minus1
+    bindsym $mod+Shift+i		gaps inner current plus 1
+    bindsym $mod+o			gaps outer current minus1
+    bindsym $mod+Shift+o		gaps outer current plus 1
+    smart_gaps on
+# Activate smart borders (always)
+    #smart_borders on
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-	
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#-------------------------------BINDING KEYS----------------------------------
+# enter fullscreen mode for the focused container
+    bindsym $mod+f fullscreen toggle
+
+# opening up a config file 
+    bindsym $mod+BackSpace exec ~/Scripts/dmconf 
+
+#wifi switcher
+    bindsym XF86RFKill exec wifi toggle
+
+# keybinds for starting something..
+    bindsym Print  exec $nsi xfce4-screenshooter
+    bindsym $mod+d exec $nsi dmenu_run -l 5 -p "launch:"  -nb "$black" -sb "$black" -sf "$white" -nf "$gray" 
+    bindsym $mod+Return exec $nsi $terminal
+    bindsym $mod+Home exec $nsi pcmanfm
+    bindsym $mod+Ctrl+1 exec $nsi $terminal -e htop 
+    bindsym $mod+F12 exec /home/haman/Scripts/wifi-connect.sh
+
+#counter strike style
+    bindsym Mod1+q workspace back_and_forth
+#
+    bindsym $mod+t split toggle
 
 # Screen brightness controls
 bindsym $mod+Ctrl+b exec $scripts/brightness.sh
-bindsym XF86MonBrightnessUp exec $nsi $HOME/Scripts/brightness2.sh +4
-bindsym XF86MonBrightnessDown exec $nsi $scripts/brightness2.sh -4
-
-#change keyboard layouts
-exec $nsi "setxkbmap -option 'grp:alt_shift_toggle' -layout us,ar -variant ,qwerty"
+bindsym XF86MonBrightnessUp exec $nsi $HOME/Scripts/brightness.sh 5%+
+bindsym XF86MonBrightnessDown exec $nsi $scripts/brightness.sh 5%-
 
 #volume and sound control
-bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5 
-bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5    
-bindsym XF86AudioMute exec pulsemixer --toggle-mute 
+bindsym XF86AudioRaiseVolume exec $nsi pulsemixer --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec $nsi pulsemixer --change-volume -5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec $nsi pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
 
-#shutdown, restart, lock
-set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
-bindsym Ctrl+mod1+Delete mode "$systemctl"
-mode "$systemctl"{
-	bindsym r exec systemctl reboot
-	bindsym s exec systemctl suspend ;  mode "default" ; exec i3lock -c 000000
-	bindsym p exec systemctl poweroff
-	bindsym l exec  i3lock -c 002b30 ; mode "default"
-	bindsym e exit 
-
-	bindsym Escape mode "default"
-	bindsym Return mode "default"
-}
-
-#specifying the colors 
-set $backgr #002b36
-set $text   #2aa198
-set $border #268bd2
-	
-# class                 border  backgr. text    indicator child_border
-client.focused          $border $backgr $text   #99ff99   $border
-client.focused_inactive #333333 $backgr #ffffff #ffffff   #ffffff
-client.unfocused        $backgr $backgr $text   #6b6b47   #000001
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
-client.background       #ffffff
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    workspace_min_width 40
-    #it makes the tray  icons bigger 
-    #tray_padding 4
-    separator_symbol "||"
-    mode dock
-    modifier $mod+mod1
-    font pango:monospace bold 8, Font Awesome bold 8
-    position top
-    status_command i3status -c ~/.config/i3/i3status.conf #i3blocks -c ~/.config/i3/i3blocks.conf
-    #output LVDS-1
-    #i3bar_command i3bar --transparency
-    tray_output primary    #show the bar in the primary screen only
-
- colors {
-
-        background $backgr
-        statusline $text
-        separator  #bbff99
-#		                   Border  background  text	
-        focused_workspace  $border $backgr     $text
-        active_workspace   #333333 #5f676a     #ffffff
-        inactive_workspace $backgr $backgr     $text
-        urgent_workspace   #2f343a #900000     #000000
-        binding_mode       $border $text       $backgr
-    }
-}
-
-#hide i3bar
-bindsym $mod+b bar mode toggle 
-
-# switching window with win+tab
-bindsym $mod+Tab exec $nsi rofi -show window
-
-
-bindsym $mod+d exec dmenu_run -l 7 -p "launch:" -nb "$backgr"  -nf "$text" -sf "$backgr" -sb "$text" 
-
-#focus follow mouse no ^_^
-focus_follows_mouse no
-
+#dual monitor
+bindsym $mod+shift+n move workspace to output right
+bindsym $mod+shift+p move workspace to output left
 
 #resizing
 bindsym $mod+ctrl+l resize grow right 10 px
 bindsym $mod+ctrl+k resize grow up 10 px
 bindsym $mod+ctrl+j resize grow down 10 px
 bindsym $mod+ctrl+h resize grow left 10 px
+bindsym $mod+mod1+h resize shrink right 10 px
+bindsym $mod+mod1+j resize shrink up 10 px
+bindsym $mod+mod1+k resize shrink down 10 px
+bindsym $mod+mod1+l resize shrink left 10 px
 
-#dual monitor
-bindsym $mod+shift+n move workspace to output right
-bindsym $mod+shift+p move workspace to output left
+#youtube stuff
+bindsym $mod+y exec $nsi youtube_handler.sh
+#bindsym --release $mod+ctrl+y exec mpv --ytdl-format=18 $(xclip -selection clipboard -o)
+#-----------------------------------------------------------------------------
+
+#testing
+for_window [instance="dropdown"] floating enable, move scratchpad, border pixel 3
+exec $terminal --class dropdown 
+bindsym $mod+u [instance="dropdown"] scratchpad show, resize set 1024 480, move position center
+
+set $resize :resizing
+bindsym $mod+apostrophe mode "$resize"
+mode "$resize" {
+bindsym shift+l resize grow right 10 px
+bindsym shift+k resize grow up 10 px
+bindsym shift+j resize grow down 10 px
+bindsym shift+h resize grow left 10 px
+bindsym h resize shrink right 10 px
+bindsym j resize shrink up 10 px
+bindsym k resize shrink down 10 px
+bindsym l resize shrink left 10 px
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
