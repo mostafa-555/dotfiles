@@ -30,15 +30,15 @@ FILES=$(find * -maxdepth 0)
 for FILE in $FILES
 do
     FILE_PATH=$(realpath $FILE)
-done
     if [ -e $HOME/.config/${FILE} ];then
         if [ -L $HOME/.config/${FILE} ];then
             rm -r $HOME/.config/${FILE}
         else
-            mv $HOME/.config/${FILE} ~/olddotfiles/config/${FILE}
+            mv $HOME/.config/${FILE} $HOME/olddotfiles/config/${FILE}
         fi
     fi
-    ln -s $FILE_PATH ~/.config/${FILE}
+    ln -s $FILE_PATH $HOME/.config/${FILE}
+done
 
 echo "all done"
     
