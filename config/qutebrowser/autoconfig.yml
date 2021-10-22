@@ -6,8 +6,5 @@
 
 config_version: 2
 settings:
-  bindings.commands:
-    global:
-      normal:
-        J: tab-prev
-        K: tab-next
+  content.notifications:
+    https://www.reddit.com: false

@@ -1,10 +1,11 @@
-# i3 config file (v4)
-
 #setting up some variables
 set $mod Mod4
-set $terminal alacritty
+set $terminal x-terminal-emulator
 set $nsi --no-startup-id
 set $scripts ~/Scripts
+
+
+#autostart 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -80,7 +81,7 @@ mode "$systemctl"{
 
 #specifying the colors 
 set $black  #000000
-set $white  #bbbbbb
+set $white  #ffffff
 set $gray   #4e4e4e
 	
 # class                 border  backgr. text    indicator child_border
@@ -100,9 +101,9 @@ bar {
     separator_symbol "|"
     mode hide
     modifier $mod+mod1
-    font pango:DejaVu Sans Mono, FontAwesome Mono 8
+    font pango:DejaVu Sans, FontAwesome  8
     position top
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    status_command i3status -c $HOME/.config/i3/i3status.conf
 
     colors {
         background $black
@@ -124,7 +125,7 @@ bindsym $mod+b bar mode toggle
 focus_follows_mouse no
 
 #speed up the cursor
-exec xset r rate 250 45
+exec $nsi xset r rate 250 45
 
 
 
@@ -143,7 +144,7 @@ default_orientation vertical
 
 #make some windows floating
     for_window [class=".*"] floating enable
-    for_window [workspace=$ws1 class="Alacritty"] floating disable
+    for_window [workspace=$ws1 class="Xfce4-terminal"] floating disable
     for_window [class="Firefox"] floating disable
     for_window [class="mpv"] resize set 960 360
     for_window [class="Nitrogen"] resize set 1000, move position center
@@ -191,15 +192,15 @@ bindsym $mod+Shift+0 move container to workspace 10
 #-----------------------------------GAPS--------------------------------------
 #gaps 
     #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-    bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 3
-    
-    gaps inner 5
-    gaps outer 4
-    bindsym $mod+i			gaps inner current minus1
-    bindsym $mod+Shift+i		gaps inner current plus 1
-    bindsym $mod+o			gaps outer current minus1
-    bindsym $mod+Shift+o		gaps outer current plus 1
-    smart_gaps on
+    #bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 3
+    #
+    #gaps inner 5
+    #gaps outer 4
+    #bindsym $mod+i			gaps inner current minus1
+    #bindsym $mod+Shift+i		gaps inner current plus 1
+    #bindsym $mod+o			gaps outer current minus1
+    #bindsym $mod+Shift+o		gaps outer current plus 1
+    #smart_gaps on
 # Activate smart borders (always)
     #smart_borders on
 
@@ -227,14 +228,17 @@ bindsym $mod+Shift+0 move container to workspace 10
     bindsym $mod+t split toggle
 
 # Screen brightness controls
-bindsym $mod+Ctrl+b exec $scripts/brightness.sh
-bindsym XF86MonBrightnessUp exec $nsi $HOME/Scripts/brightness.sh 5%+
-bindsym XF86MonBrightnessDown exec $nsi $scripts/brightness.sh 5%-
+bindsym XF86MonBrightnessUp exec $nsi light -A 5% ; exec $nsi notify-send -t 250 $(light)
+bindsym XF86MonBrightnessDown exec $nsi light -U 5% ; exec $nsi notify-send -t 250 $(light)
 
 #volume and sound control
-bindsym XF86AudioRaiseVolume exec $nsi pulsemixer --change-volume +5 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec $nsi pulsemixer --change-volume -5 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec $nsi pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioRaiseVolume exec $nsi pulsemixer --change-volume +5 && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioLowerVolume exec $nsi pulsemixer --change-volume -5 && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioMute exec $nsi pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 #dual monitor
 bindsym $mod+shift+n move workspace to output right
@@ -256,9 +260,9 @@ bindsym $mod+y exec $nsi youtube_handler.sh
 #-----------------------------------------------------------------------------
 
 #testing
-for_window [instance="dropdown"] floating enable, move scratchpad, border pixel 3
-exec $terminal --class dropdown 
-bindsym $mod+u [instance="dropdown"] scratchpad show, resize set 1024 480, move position center
+for_window [title="dropdown"] floating enable, move scratchpad, border pixel 3
+exec $nsi xfce4-terminal --title dropdown 
+bindsym $mod+u [title="dropdown"] scratchpad show, resize set 1024 480, move position center
 
 set $resize :resizing
 bindsym $mod+apostrophe mode "$resize"

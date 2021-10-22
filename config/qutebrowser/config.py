@@ -233,7 +233,7 @@ c.colors.completion.scrollbar.bg = '#002b36'
 # Background color of the context menu. If set to null, the Qt default
 # is used.
 # Type: QssColor
-c.colors.contextmenu.menu.bg = '#002b36'
+c.colors.contextmenu.menu.bg = '#000000'
 
 # Foreground color of the context menu. If set to null, the Qt default
 # is used.
@@ -355,7 +355,7 @@ c.colors.prompts.border = '#002b36'
 
 # Background color for prompts.
 # Type: QssColor
-c.colors.prompts.bg = '#002b36'
+c.colors.prompts.bg = '#000000'
 
 # Background color for the selected item in filename prompts.
 # Type: QssColor
@@ -363,11 +363,11 @@ c.colors.prompts.selected.bg = '#586e75'
 
 # Foreground color of the statusbar.
 # Type: QssColor
-c.colors.statusbar.normal.fg = '#859900'
+c.colors.statusbar.normal.fg = '#ffffff'
 
 # Background color of the statusbar.
 # Type: QssColor
-c.colors.statusbar.normal.bg = '#002b36'
+c.colors.statusbar.normal.bg = '#000000'
 
 # Foreground color of the statusbar in insert mode.
 # Type: QssColor
@@ -395,11 +395,11 @@ c.colors.statusbar.private.bg = '#073642'
 
 # Foreground color of the statusbar in command mode.
 # Type: QssColor
-c.colors.statusbar.command.fg = '#93a1a1'
+c.colors.statusbar.command.fg = '#ffffff'
 
 # Background color of the statusbar in command mode.
 # Type: QssColor
-c.colors.statusbar.command.bg = '#002b36'
+c.colors.statusbar.command.bg = '#000000'
 
 # Foreground color of the statusbar in private browsing + command mode.
 # Type: QssColor
@@ -431,7 +431,7 @@ c.colors.statusbar.progress.bg = '#268bd2'
 
 # Default foreground color of the URL in the statusbar.
 # Type: QssColor
-c.colors.statusbar.url.fg = '#93a1a1'
+c.colors.statusbar.url.fg = '#FFA646'
 
 # Foreground color of the URL in the statusbar on error.
 # Type: QssColor
@@ -444,12 +444,12 @@ c.colors.statusbar.url.hover.fg = '#93a1a1'
 # Foreground color of the URL in the statusbar on successful load
 # (http).
 # Type: QssColor
-c.colors.statusbar.url.success.http.fg = '#2aa198'
+c.colors.statusbar.url.success.http.fg = '#FFA646'
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
 # Type: QssColor
-c.colors.statusbar.url.success.https.fg = '#859900'
+c.colors.statusbar.url.success.https.fg = '#FFA646'
 
 # Foreground color of the URL in the statusbar when there's a warning.
 # Type: QssColor
@@ -457,15 +457,15 @@ c.colors.statusbar.url.warn.fg = '#6c71c4'
 
 # Background color of the tab bar.
 # Type: QssColor
-c.colors.tabs.bar.bg = '#002b36'
+c.colors.tabs.bar.bg = '#000000'
 
 # Color gradient start for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.start = '#268bd2'
+c.colors.tabs.indicator.start = '#000000'
 
 # Color gradient end for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.stop = '#2aa198'
+c.colors.tabs.indicator.stop = '#000000'
 
 # Color for the tab indicator on errors.
 # Type: QtColor
@@ -489,19 +489,19 @@ c.colors.tabs.even.bg = '#002b36'
 
 # Foreground color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.fg = '#93a1a1'
+c.colors.tabs.selected.odd.fg = '#ffffff'
 
 # Background color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.bg = '#586e75'
+c.colors.tabs.selected.odd.bg = '#000000'
 
 # Foreground color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.fg = '#93a1a1'
+c.colors.tabs.selected.even.fg = '#ffffff'
 
 # Background color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.bg = '#586e75'
+c.colors.tabs.selected.even.bg = '#000000'
 
 # Foreground color of pinned unselected odd tabs.
 # Type: QtColor

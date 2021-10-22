@@ -69,7 +69,7 @@ hi SpellCap           ctermbg=NONE       ctermfg=250
 hi SpellLocal         ctermbg=NONE       ctermfg=250
 hi SpellRare          ctermbg=NONE       ctermfg=250
 hi Statement          ctermbg=NONE       ctermfg=250
-hi StatusLine         ctermfg=233        ctermbg=238
+hi StatusLine         ctermfg=235        ctermbg=69
 hi StatusLineNC       ctermbg=NONE       ctermfg=250
 hi StorageClass       ctermbg=NONE       ctermfg=250
 hi String             ctermbg=NONE       ctermfg=245

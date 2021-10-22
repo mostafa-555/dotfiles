@@ -5,7 +5,8 @@ syntax on
 filetype plugin indent on 
 set nu
 set laststatus=2
-set noshowmode
+"set noshowmode
+set showmode
 set incsearch
 set hlsearch
 set ruler
@@ -29,6 +30,7 @@ let g:netrw_winsize = 25
 "Goyo
 nnoremap <leader>g :Goyo<CR>
 "fzf
+source /usr/share/doc/fzf/examples/fzf.vim
 nnoremap <leader>f :FZF<CR>
 
 "source vimrc
@@ -72,4 +74,4 @@ let g:lightline = {
 
 nnoremap <leader>p :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
-nnoremap <leader>t :find /home/haman/.vim/colors/NoRMaN.vim<CR>
+nnoremap <leader>t :find /home/haman/.vim/colors/norman.vim<CR>
