@@ -15,9 +15,9 @@ let g:colors_name='norman'
 
 hi Boolean            ctermbg=NONE       ctermfg=255
 hi Character          ctermbg=NONE       ctermfg=255
-hi ColorColumn        ctermbg=234        ctermfg=255
+hi ColorColumn        ctermbg=235        ctermfg=NONE
 hi Comment            ctermbg=NONE       ctermfg=240
-hi Condtional         ctermbg=NONE       ctermfg=255
+hi Condtional         ctermbg=NONE       ctermfg=69
 hi Constant           ctermbg=NONE       ctermfg=255
 hi CursorColumn       ctermbg=NONE       ctermfg=255
 hi Cursor             ctermbg=NONE       ctermfg=255
@@ -42,7 +42,7 @@ hi Include            ctermbg=NONE       ctermfg=255
 hi IncSearch          ctermbg=NONE       ctermfg=255
 hi Keyword            ctermbg=NONE       ctermfg=255
 hi Label              ctermbg=NONE       ctermfg=255
-hi LineNr             ctermbg=232        ctermfg=237
+hi LineNr             ctermfg=240         ctermbg=NONE
 hi Macro              ctermbg=NONE       ctermfg=255
 hi MatchParen         ctermbg=NONE       ctermfg=255
 hi ModeMsg            ctermbg=NONE       ctermfg=255
@@ -59,7 +59,7 @@ hi PreCondit          ctermbg=NONE       ctermfg=255
 hi PreProc            ctermbg=NONE       ctermfg=255
 hi Question           ctermbg=NONE       ctermfg=255
 hi Repeat             ctermbg=NONE       ctermfg=255
-hi Search             ctermbg=NONE       ctermfg=186
+hi Search             ctermbg=NONE       ctermfg=1
 hi SpecialChar        ctermbg=NONE       ctermfg=255
 hi SpecialComment     ctermbg=NONE       ctermfg=255
 hi Special            ctermbg=NONE       ctermfg=255
@@ -90,3 +90,7 @@ hi WildMenu           ctermbg=NONE       ctermfg=255
 "hi def link diffRemoved DiffDelet
 "hi def link diffChanged DiffChang
 "hi def link diffAdded DiffAdd
+
+"shell colors
+hi link shConditional Condtional
+

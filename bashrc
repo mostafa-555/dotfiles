@@ -94,9 +94,8 @@ export LESS_TERMCAP_se=$'\e[0m'
 # Not supported in the "fish" shell.
 #(cat ~/.cache/wal/sequences &) 
 
-
 #variables
 export EDITOR="vim"
 
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source /usr/share/doc/fzf/examples/completion.bash
+source /usr/share/doc/fzf/examples/key-bindings.bash

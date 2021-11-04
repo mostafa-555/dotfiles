@@ -52,14 +52,7 @@ c.auto_save.session = True
 # unknown-3rdparty` per-domain on QtWebKit will have the same effect as
 # `all`. If this setting is used with URL patterns, the pattern gets
 # applied to the origin/first party URL of the page making the request,
-# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
-# from URLs, so URL patterns using paths will not match. With
-# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
-# you will typically need to set this setting for `example.com` when the
-# cookie is set on `somesubdomain.example.com` for it to work properly.
-# To debug issues with this setting, start qutebrowser with `--debug
-# --logfilter network --debug-flag log-cookies` which will show all
-# cookies being set.
+# not the request URL.
 # Type: String
 # Valid values:
 #   - all: Accept all cookies.
@@ -76,14 +69,7 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 # unknown-3rdparty` per-domain on QtWebKit will have the same effect as
 # `all`. If this setting is used with URL patterns, the pattern gets
 # applied to the origin/first party URL of the page making the request,
-# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
-# from URLs, so URL patterns using paths will not match. With
-# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
-# you will typically need to set this setting for `example.com` when the
-# cookie is set on `somesubdomain.example.com` for it to work properly.
-# To debug issues with this setting, start qutebrowser with `--debug
-# --logfilter network --debug-flag log-cookies` which will show all
-# cookies being set.
+# not the request URL.
 # Type: String
 # Valid values:
 #   - all: Accept all cookies.
@@ -127,7 +113,7 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version} Edg/{upstream_browser_version}', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -143,7 +129,7 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -169,371 +155,197 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
-# Text color of the completion widget. May be a single color to use for
-# all columns or a list of three colors, one for each column.
-# Type: List of QtColor, or QtColor
-c.colors.completion.fg = '#93a1a1'
+# Height (in pixels or as percentage of the window) of the completion.
+# Type: PercOrInt
+c.completion.height = '75%'
+
+# When to show the autocompletion window.
+# Type: String
+# Valid values:
+#   - always: Whenever a completion is available.
+#   - auto: Whenever a completion is requested.
+#   - never: Never.
+c.completion.show = 'always'
+
+# Width (in pixels) of the scrollbar in the completion window.
+# Type: Int
+c.completion.scrollbar.width = 9
+
+# Padding (in pixels) of the scrollbar handle in the completion window.
+# Type: Int
+c.completion.scrollbar.padding = 2
+
+# Directory to save downloads to. If unset, a sensible OS-specific
+# default is used.
+# Type: Directory
+c.downloads.location.directory = '$HOME/Downloads'
+
+# Editor (and arguments) to use for the `edit-*` commands. The following
+# placeholders are defined:  * `{file}`: Filename of the file to be
+# edited. * `{line}`: Line in which the caret is found in the text. *
+# `{column}`: Column in which the caret is found in the text. *
+# `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
+# Same as `{column}`, but starting from index 0.
+# Type: ShellCommand
+c.editor.command = ['x-terminal-emulator', '-e', 'vim', '{file}', '-c', 'normal {line}G{column0}l']
+
+# CSS border value for hints.
+# Type: String
+c.hints.border = '1px solid #ffffff'
+
+# Make characters in hint strings uppercase.
+# Type: Bool
+c.hints.uppercase = False
+
+# Enable smooth scrolling for web pages. Note smooth scrolling does not
+# work with the `:scroll-px` command.
+# Type: Bool
+c.scrolling.smooth = False
+
+# When to show the statusbar.
+# Type: String
+# Valid values:
+#   - always: Always show the statusbar.
+#   - never: Always hide the statusbar.
+#   - in-mode: Show the statusbar when in modes other than normal mode.
+c.statusbar.show = 'always'
+
+# Position of the tab bar.
+# Type: Position
+# Valid values:
+#   - top
+#   - bottom
+#   - left
+#   - right
+c.tabs.position = 'top'
+
+# When to show the tab bar.
+# Type: String
+# Valid values:
+#   - always: Always show the tab bar.
+#   - never: Always hide the tab bar.
+#   - multiple: Hide the tab bar if only one tab is open.
+#   - switching: Show the tab bar when switching tabs.
+c.tabs.show = 'multiple'
+
+# Maximum width (in pixels) of tabs (-1 for no maximum). This setting
+# only applies when tabs are horizontal. This setting does not apply to
+# pinned tabs, unless `tabs.pinned.shrink` is False. This setting may
+# not apply properly if max_width is smaller than the minimum size of
+# tab contents, or smaller than tabs.min_width.
+# Type: Int
+c.tabs.max_width = -1
+
+# Hide the window decoration.  This setting requires a restart on
+# Wayland.
+# Type: Bool
+c.window.hide_decoration = False
+
+# Set the main window background to transparent.  This allows having a
+# transparent tab- or statusbar (might require a compositor such as
+# picom). However, it breaks some functionality such as dmenu embedding
+# via its `-w` option. On some systems, it was additionally reported
+# that main window transparency negatively affects performance.  Note
+# this setting only affects windows opened after setting it.
+# Type: Bool
+c.window.transparent = False
 
 # Background color of the completion widget for odd rows.
 # Type: QssColor
-c.colors.completion.odd.bg = '#073642'
+c.colors.completion.odd.bg = 'black'
 
 # Background color of the completion widget for even rows.
 # Type: QssColor
-c.colors.completion.even.bg = '#002b36'
-
-# Foreground color of completion widget category headers.
-# Type: QtColor
-c.colors.completion.category.fg = '#b58900'
-
-# Background color of the completion widget category headers.
-# Type: QssColor
-c.colors.completion.category.bg = '#002b36'
+c.colors.completion.even.bg = 'black'
 
 # Top border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.top = '#002b36'
+c.colors.completion.category.border.top = 'white'
 
 # Bottom border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.bottom = '#002b36'
-
-# Foreground color of the selected completion item.
-# Type: QtColor
-c.colors.completion.item.selected.fg = '#93a1a1'
-
-# Background color of the selected completion item.
-# Type: QssColor
-c.colors.completion.item.selected.bg = '#586e75'
-
-# Top border color of the selected completion item.
-# Type: QssColor
-c.colors.completion.item.selected.border.top = '#586e75'
-
-# Bottom border color of the selected completion item.
-# Type: QssColor
-c.colors.completion.item.selected.border.bottom = '#586e75'
-
-# Foreground color of the matched text in the selected completion item.
-# Type: QtColor
-c.colors.completion.item.selected.match.fg = '#859900'
+c.colors.completion.category.border.bottom = 'white'
 
 # Foreground color of the matched text in the completion.
 # Type: QtColor
-c.colors.completion.match.fg = '#859900'
-
-# Color of the scrollbar handle in the completion view.
-# Type: QssColor
-c.colors.completion.scrollbar.fg = '#93a1a1'
-
-# Color of the scrollbar in the completion view.
-# Type: QssColor
-c.colors.completion.scrollbar.bg = '#002b36'
+c.colors.completion.match.fg = '#FF8832'
 
 # Background color of the context menu. If set to null, the Qt default
 # is used.
 # Type: QssColor
-c.colors.contextmenu.menu.bg = '#000000'
-
-# Foreground color of the context menu. If set to null, the Qt default
-# is used.
-# Type: QssColor
-c.colors.contextmenu.menu.fg = '#93a1a1'
-
-# Background color of the context menu's selected item. If set to null,
-# the Qt default is used.
-# Type: QssColor
-c.colors.contextmenu.selected.bg = '#586e75'
-
-# Foreground color of the context menu's selected item. If set to null,
-# the Qt default is used.
-# Type: QssColor
-c.colors.contextmenu.selected.fg = '#93a1a1'
-
-# Background color of disabled items in the context menu. If set to
-# null, the Qt default is used.
-# Type: QssColor
-c.colors.contextmenu.disabled.bg = '#073642'
-
-# Foreground color of disabled items in the context menu. If set to
-# null, the Qt default is used.
-# Type: QssColor
-c.colors.contextmenu.disabled.fg = '#839496'
-
-# Background color for the download bar.
-# Type: QssColor
-c.colors.downloads.bar.bg = '#002b36'
-
-# Color gradient start for download text.
-# Type: QtColor
-c.colors.downloads.start.fg = '#002b36'
-
-# Color gradient start for download backgrounds.
-# Type: QtColor
-c.colors.downloads.start.bg = '#268bd2'
-
-# Color gradient end for download text.
-# Type: QtColor
-c.colors.downloads.stop.fg = '#002b36'
-
-# Color gradient stop for download backgrounds.
-# Type: QtColor
-c.colors.downloads.stop.bg = '#2aa198'
-
-# Foreground color for downloads with errors.
-# Type: QtColor
-c.colors.downloads.error.fg = '#dc322f'
+c.colors.contextmenu.menu.bg = 'black'
 
 # Font color for hints.
 # Type: QssColor
-c.colors.hints.fg = '#002b36'
+c.colors.hints.fg = 'white'
 
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
 # Type: QssColor
-c.colors.hints.bg = '#b58900'
-
-# Font color for the matched part of hints.
-# Type: QtColor
-c.colors.hints.match.fg = '#93a1a1'
-
-# Text color for the keyhint widget.
-# Type: QssColor
-c.colors.keyhint.fg = '#93a1a1'
-
-# Highlight color for keys to complete the current keychain.
-# Type: QssColor
-c.colors.keyhint.suffix.fg = '#93a1a1'
-
-# Background color of the keyhint widget.
-# Type: QssColor
-c.colors.keyhint.bg = '#002b36'
-
-# Foreground color of an error message.
-# Type: QssColor
-c.colors.messages.error.fg = '#002b36'
-
-# Background color of an error message.
-# Type: QssColor
-c.colors.messages.error.bg = '#dc322f'
-
-# Border color of an error message.
-# Type: QssColor
-c.colors.messages.error.border = '#dc322f'
-
-# Foreground color of a warning message.
-# Type: QssColor
-c.colors.messages.warning.fg = '#002b36'
-
-# Background color of a warning message.
-# Type: QssColor
-c.colors.messages.warning.bg = '#6c71c4'
-
-# Border color of a warning message.
-# Type: QssColor
-c.colors.messages.warning.border = '#6c71c4'
-
-# Foreground color of an info message.
-# Type: QssColor
-c.colors.messages.info.fg = '#93a1a1'
-
-# Background color of an info message.
-# Type: QssColor
-c.colors.messages.info.bg = '#002b36'
-
-# Border color of an info message.
-# Type: QssColor
-c.colors.messages.info.border = '#002b36'
-
-# Foreground color for prompts.
-# Type: QssColor
-c.colors.prompts.fg = '#93a1a1'
+c.colors.hints.bg = 'black'
 
 # Border used around UI elements in prompts.
 # Type: String
-c.colors.prompts.border = '#002b36'
+c.colors.prompts.border = 'white'
 
 # Background color for prompts.
 # Type: QssColor
-c.colors.prompts.bg = '#000000'
-
-# Background color for the selected item in filename prompts.
-# Type: QssColor
-c.colors.prompts.selected.bg = '#586e75'
-
-# Foreground color of the statusbar.
-# Type: QssColor
-c.colors.statusbar.normal.fg = '#ffffff'
-
-# Background color of the statusbar.
-# Type: QssColor
-c.colors.statusbar.normal.bg = '#000000'
-
-# Foreground color of the statusbar in insert mode.
-# Type: QssColor
-c.colors.statusbar.insert.fg = '#002b36'
+c.colors.prompts.bg = 'black'
 
 # Background color of the statusbar in insert mode.
 # Type: QssColor
-c.colors.statusbar.insert.bg = '#268bd2'
-
-# Foreground color of the statusbar in passthrough mode.
-# Type: QssColor
-c.colors.statusbar.passthrough.fg = '#002b36'
-
-# Background color of the statusbar in passthrough mode.
-# Type: QssColor
-c.colors.statusbar.passthrough.bg = '#2aa198'
-
-# Foreground color of the statusbar in private browsing mode.
-# Type: QssColor
-c.colors.statusbar.private.fg = '#002b36'
-
-# Background color of the statusbar in private browsing mode.
-# Type: QssColor
-c.colors.statusbar.private.bg = '#073642'
-
-# Foreground color of the statusbar in command mode.
-# Type: QssColor
-c.colors.statusbar.command.fg = '#ffffff'
-
-# Background color of the statusbar in command mode.
-# Type: QssColor
-c.colors.statusbar.command.bg = '#000000'
-
-# Foreground color of the statusbar in private browsing + command mode.
-# Type: QssColor
-c.colors.statusbar.command.private.fg = '#93a1a1'
-
-# Background color of the statusbar in private browsing + command mode.
-# Type: QssColor
-c.colors.statusbar.command.private.bg = '#002b36'
-
-# Foreground color of the statusbar in caret mode.
-# Type: QssColor
-c.colors.statusbar.caret.fg = '#002b36'
-
-# Background color of the statusbar in caret mode.
-# Type: QssColor
-c.colors.statusbar.caret.bg = '#6c71c4'
-
-# Foreground color of the statusbar in caret mode with a selection.
-# Type: QssColor
-c.colors.statusbar.caret.selection.fg = '#002b36'
-
-# Background color of the statusbar in caret mode with a selection.
-# Type: QssColor
-c.colors.statusbar.caret.selection.bg = '#268bd2'
-
-# Background color of the progress bar.
-# Type: QssColor
-c.colors.statusbar.progress.bg = '#268bd2'
-
-# Default foreground color of the URL in the statusbar.
-# Type: QssColor
-c.colors.statusbar.url.fg = '#FFA646'
-
-# Foreground color of the URL in the statusbar on error.
-# Type: QssColor
-c.colors.statusbar.url.error.fg = '#dc322f'
-
-# Foreground color of the URL in the statusbar for hovered links.
-# Type: QssColor
-c.colors.statusbar.url.hover.fg = '#93a1a1'
-
-# Foreground color of the URL in the statusbar on successful load
-# (http).
-# Type: QssColor
-c.colors.statusbar.url.success.http.fg = '#FFA646'
-
-# Foreground color of the URL in the statusbar on successful load
-# (https).
-# Type: QssColor
-c.colors.statusbar.url.success.https.fg = '#FFA646'
-
-# Foreground color of the URL in the statusbar when there's a warning.
-# Type: QssColor
-c.colors.statusbar.url.warn.fg = '#6c71c4'
-
-# Background color of the tab bar.
-# Type: QssColor
-c.colors.tabs.bar.bg = '#000000'
-
-# Color gradient start for the tab indicator.
-# Type: QtColor
-c.colors.tabs.indicator.start = '#000000'
-
-# Color gradient end for the tab indicator.
-# Type: QtColor
-c.colors.tabs.indicator.stop = '#000000'
-
-# Color for the tab indicator on errors.
-# Type: QtColor
-c.colors.tabs.indicator.error = '#dc322f'
+c.colors.statusbar.insert.bg = 'black'
 
 # Foreground color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.fg = '#93a1a1'
+c.colors.tabs.odd.fg = 'white'
 
 # Background color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.bg = '#073642'
+c.colors.tabs.odd.bg = 'black'
 
 # Foreground color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.fg = '#93a1a1'
+c.colors.tabs.even.fg = 'white'
 
 # Background color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.bg = '#002b36'
+c.colors.tabs.even.bg = 'black'
 
 # Foreground color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.fg = '#ffffff'
+c.colors.tabs.selected.odd.fg = 'black'
 
 # Background color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.bg = '#000000'
+c.colors.tabs.selected.odd.bg = '#bbbbbb'
 
 # Foreground color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.fg = '#ffffff'
+c.colors.tabs.selected.even.fg = 'black'
 
 # Background color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.bg = '#000000'
+c.colors.tabs.selected.even.bg = '#bbbbbb'
 
-# Foreground color of pinned unselected odd tabs.
-# Type: QtColor
-c.colors.tabs.pinned.odd.fg = '#fdf6e3'
+# Render all web contents using a dark theme. Example configurations
+# from Chromium's `chrome://flags`:  - "With simple HSL/CIELAB/RGB-based
+# inversion": Set   `colors.webpage.darkmode.algorithm` accordingly.  -
+# "With selective image inversion": Set
+# `colors.webpage.darkmode.policy.images` to `smart`.  - "With selective
+# inversion of non-image elements": Set
+# `colors.webpage.darkmode.threshold.text` to 150 and
+# `colors.webpage.darkmode.threshold.background` to 205.  - "With
+# selective inversion of everything": Combines the two variants   above.
+# Type: Bool
+c.colors.webpage.darkmode.enabled = False
 
-# Background color of pinned unselected odd tabs.
-# Type: QtColor
-c.colors.tabs.pinned.odd.bg = '#859900'
-
-# Foreground color of pinned unselected even tabs.
-# Type: QtColor
-c.colors.tabs.pinned.even.fg = '#fdf6e3'
-
-# Background color of pinned unselected even tabs.
-# Type: QtColor
-c.colors.tabs.pinned.even.bg = '#2aa198'
-
-# Foreground color of pinned selected odd tabs.
-# Type: QtColor
-c.colors.tabs.pinned.selected.odd.fg = '#93a1a1'
-
-# Background color of pinned selected odd tabs.
-# Type: QtColor
-c.colors.tabs.pinned.selected.odd.bg = '#586e75'
-
-# Foreground color of pinned selected even tabs.
-# Type: QtColor
-c.colors.tabs.pinned.selected.even.fg = '#93a1a1'
-
-# Background color of pinned selected even tabs.
-# Type: QtColor
-c.colors.tabs.pinned.selected.even.bg = '#586e75'
+# Default font size to use. Whenever "default_size" is used in a font
+# setting, it's replaced with the size listed here. Valid values are
+# either a float value with a "pt" suffix, or an integer value with a
+# "px" suffix.
+# Type: String
+c.fonts.default_size = '11pt'
 
 # Bindings for normal mode
 config.bind('J', 'tab-prev')

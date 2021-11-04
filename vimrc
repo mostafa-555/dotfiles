@@ -74,4 +74,4 @@ let g:lightline = {
 
 nnoremap <leader>p :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
-nnoremap <leader>t :find /home/haman/.vim/colors/norman.vim<CR>
+nnoremap <leader>t :wincmd v<bar> :find $HOME/.vim/colors/norman.vim<CR>

@@ -82,6 +82,7 @@ mode "$systemctl"{
 #specifying the colors 
 set $black  #000000
 set $white  #ffffff
+set $white  #59afd7
 set $gray   #4e4e4e
 	
 # class                 border  backgr. text    indicator child_border
@@ -101,7 +102,7 @@ bar {
     separator_symbol "|"
     mode hide
     modifier $mod+mod1
-    font pango:DejaVu Sans, FontAwesome  8
+    font pango:DejaVu Sans, FontAwesome 9
     position top
     status_command i3status -c $HOME/.config/i3/i3status.conf
 
@@ -138,8 +139,10 @@ default_orientation vertical
 
 #assign windows to workspaces
     assign [class="Firefox"] $ws2
+    assign [class="qutebrowser"] $ws2
     assign [class="mpv"] $ws3
     for_window [title="pdf"] move container to workspace $ws4, floating disable
+    assign [class="Anki"] $ws4
     assign [class="PacketTracer"] $ws5
 
 #make some windows floating
