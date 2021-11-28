@@ -48,7 +48,7 @@ hi MatchParen         ctermbg=NONE       ctermfg=255
 hi ModeMsg            ctermbg=NONE       ctermfg=255
 hi MoreMsg            ctermbg=NONE       ctermfg=255
 hi NonText            ctermbg=NONE       ctermfg=255
-hi Normal             ctermbg=NONE       ctermfg=244
+hi Normal             ctermbg=232        ctermfg=244
 hi Number             ctermbg=NONE       ctermfg=216
 hi Operator           ctermbg=NONE       ctermfg=255
 hi Pmenu              ctermbg=NONE       ctermfg=255

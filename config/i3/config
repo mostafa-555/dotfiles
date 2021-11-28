@@ -70,9 +70,9 @@ set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
 bindsym Ctrl+mod1+Delete mode "$systemctl"
 mode "$systemctl"{
 	bindsym r exec systemctl reboot -i  
-	bindsym s exec systemctl suspend -i;  mode "default" ; exec i3lock -c 000000
+	bindsym s exec systemctl suspend -i;  mode "default" ; exec i3lock -c #080808  
 	bindsym p exec systemctl poweroff -i
-	bindsym l exec  i3lock -c 002b30 ; mode "default"
+	bindsym l exec  i3lock --color 080808 ; mode "default"
 	bindsym e exit 
 
 	bindsym Escape mode "default"
@@ -82,7 +82,6 @@ mode "$systemctl"{
 #specifying the colors 
 set $black  #000000
 set $white  #ffffff
-set $white  #59afd7
 set $gray   #4e4e4e
 	
 # class                 border  backgr. text    indicator child_border
@@ -141,18 +140,17 @@ default_orientation vertical
     assign [class="Firefox"] $ws2
     assign [class="qutebrowser"] $ws2
     assign [class="mpv"] $ws3
-    for_window [title="pdf"] move container to workspace $ws4, floating disable
+    for_window [title="*.pdf"] move container to workspace $ws4, floating disable
     assign [class="Anki"] $ws4
     assign [class="PacketTracer"] $ws5
 
 #make some windows floating
-    for_window [class=".*"] floating enable
+    for_window [class=".*"] floating enable, move position center
     for_window [workspace=$ws1 class="Xfce4-terminal"] floating disable
-    for_window [class="Firefox"] floating disable
+    #for_window [class="Firefox"] floating disable
     for_window [class="mpv"] resize set 960 360
-    for_window [class="Nitrogen"] resize set 1000, move position center
     for_window [class="Pcmanfm"] resize set 480 640, move position center
-    for_window [class="PacketTracer"] floating disable
+    for_window [workspace=$ws5] floating disable
 
 #---------------------------------WORKSPACES-----------------------------------
 set $ws1 1:Terminals
