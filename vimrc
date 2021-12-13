@@ -56,9 +56,9 @@ colorscheme norman
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 "Plug 'ap/vim-css-color'
-Plug 'chrisbra/Colorizer'
+"Plug 'chrisbra/Colorizer'
 Plug 'junegunn/goyo.vim'
 call plug#end()
 
@@ -70,7 +70,6 @@ let g:lightline = {
       \ }
 "
 "colorscheme default
-"hi ColorColumn ctermbg=black
 
 nnoremap <leader>p :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 

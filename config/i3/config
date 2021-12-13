@@ -45,7 +45,7 @@ bindsym $mod+Escape kill
 popup_during_fullscreen smart
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+slash layout toggle tabbed toggle split
+bindsym $mod+slash layout toggle tabbed stacked split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
