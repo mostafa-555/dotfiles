@@ -51,9 +51,9 @@ hi NonText            ctermbg=NONE       ctermfg=255
 hi Normal             ctermbg=0          ctermfg=244
 hi Number             ctermbg=NONE       ctermfg=216
 hi Operator           ctermbg=NONE       ctermfg=255
-hi Pmenu              ctermbg=NONE       ctermfg=255
+hi Pmenu              ctermbg=235        ctermfg=255
 hi PmenuSbar          ctermbg=NONE       ctermfg=255
-hi PmenuSel           ctermbg=NONE       ctermfg=45       cterm=bold
+hi PmenuSel           ctermbg=235        ctermfg=69       cterm=bold
 hi PmenuThumb         ctermbg=NONE       ctermfg=255
 hi PreCondit          ctermbg=NONE       ctermfg=255
 hi PreProc            ctermbg=NONE       ctermfg=255

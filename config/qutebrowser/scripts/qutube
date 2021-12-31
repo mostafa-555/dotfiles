@@ -1,11 +1,11 @@
 #!/bin/sh
 #QUTE_URL: hint link from qutebrowser -_-
 
-quality=$(printf '144\n240\n360\n480\n720\n1080' | dmenu -i -p "quality: ")
+quality=$(printf '144\n240\n360\n480\n720\n1080\naudio' | dmenu -i -p "quality: ") || exit 
 
-if [ -n "$quality" ]; then
-    mpv --ytdl-format="bestvideo[height=${quality}]+bestaudio/bestvideo[height=360]+bestaudio/best" "$QUTE_URL" > /dev/null
+if [ "$quality" = "audio" ]; then
+    mpv --ytdl-format="bestaudio" "$QUTE_URL" > /dev/null
 else
-    mpv --ytdl-format="bestvideo[height=360]+bestaudio" "$QUTE_URL" > /dev/null
+    mpv --ytdl-format="bestvideo[height=${quality}]+bestaudio/bestvideo[height=360]+bestaudio/best" "$QUTE_URL" > /dev/null
 fi
 

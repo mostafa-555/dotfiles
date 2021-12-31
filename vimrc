@@ -59,6 +59,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'itchyny/lightline.vim'
 "Plug 'ap/vim-css-color'
 "Plug 'chrisbra/Colorizer'
+Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 call plug#end()
 

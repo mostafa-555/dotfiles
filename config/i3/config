@@ -281,3 +281,7 @@ bindsym Return mode "default"
 bindsym Escape mode "default"
 }
 
+
+
+#you know why you did this ^_^
+bindsym $mod+x exec i3lock -c 080808 

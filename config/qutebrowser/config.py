@@ -292,6 +292,22 @@ c.colors.completion.category.border.top = 'white'
 # Type: QssColor
 c.colors.completion.category.border.bottom = 'white'
 
+# Foreground color of the selected completion item.
+# Type: QtColor
+c.colors.completion.item.selected.fg = '#000000'
+
+# Background color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.bg = '#ffffff'
+
+# Top border color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.border.top = '#717171'
+
+# Bottom border color of the selected completion item.
+# Type: QssColor
+c.colors.completion.item.selected.border.bottom = '#717171'
+
 # Foreground color of the matched text in the completion.
 # Type: QtColor
 c.colors.completion.match.fg = '#FF8832'
@@ -299,7 +315,22 @@ c.colors.completion.match.fg = '#FF8832'
 # Background color of the context menu. If set to null, the Qt default
 # is used.
 # Type: QssColor
-c.colors.contextmenu.menu.bg = 'black'
+c.colors.contextmenu.menu.bg = '#717171'
+
+# Foreground color of the context menu. If set to null, the Qt default
+# is used.
+# Type: QssColor
+c.colors.contextmenu.menu.fg = '#ffffff'
+
+# Background color of the context menu's selected item. If set to null,
+# the Qt default is used.
+# Type: QssColor
+c.colors.contextmenu.selected.bg = 'white'
+
+# Foreground color of the context menu's selected item. If set to null,
+# the Qt default is used.
+# Type: QssColor
+c.colors.contextmenu.selected.fg = 'black'
 
 # Font color for hints.
 # Type: QssColor

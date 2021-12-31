@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  search.ignore_case:
-    global: never
+  content.proxy:
+    global: system

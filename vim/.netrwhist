@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/haman/github/TFL/scripts/bashchallenge'
+let g:netrw_dirhist_1='/home/haman/github/TFL/scripts'
+let g:netrw_dirhist_0='/home/haman/github/TFL/scripts/bashchallenge'
 let g:netrw_dirhist_9='/home/haman/Scripts'
 let g:netrw_dirhist_8='/usr/share/doc/pulseaudio/examples'
 let g:netrw_dirhist_7='/home/haman/github/subsync'
@@ -7,5 +10,3 @@ let g:netrw_dirhist_6='/mnt'
 let g:netrw_dirhist_5='/media'
 let g:netrw_dirhist_4='/usr/share/doc/fzf/examples'
 let g:netrw_dirhist_3='/home/haman/.config/i3'
-let g:netrw_dirhist_2='/home/haman/.config'
-let g:netrw_dirhist_1='/home/haman/dotfiles/config/i3'
