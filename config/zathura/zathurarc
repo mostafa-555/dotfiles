@@ -1,7 +1,7 @@
 set recolor   
 set recolor-lightcolor \#222222
 set recolor-keephue
-set default-bg \#22223
+set default-bg rgba(0,0,0,0.7)
 
 set page-padding 2
 map u scroll half-up
