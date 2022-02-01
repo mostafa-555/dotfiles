@@ -82,7 +82,7 @@ mode "$systemctl"{
 
 #specifying the colors 
 set $black  #000000
-set $white  #ffffff
+set $white  #B18656
 set $gray   #4e4e4e
 	
 # class                 border  backgr. text    indicator child_border
