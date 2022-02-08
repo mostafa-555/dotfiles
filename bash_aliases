@@ -17,5 +17,6 @@ alias fast='fast --single-line'
 
 alias trans='trans -player mpv -t ar+en'
 alias lss='exa -l --color=auto --group-directories-first --icons'
+alias startx='startx &> /dev/null'
 
 
