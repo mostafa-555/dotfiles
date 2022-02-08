@@ -11,7 +11,7 @@ set relativenumber
 set wildmenu
 set noswapfile
 set hidden
-set shiftwidth=4 softtabstop=4 expandtab
+set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 "split below, right.
 set splitbelow splitright
 set scrolloff=12
