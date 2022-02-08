@@ -109,12 +109,12 @@ update_repos() {
     clear
     for repo in $HOME/{dotfiles,Scripts,github/qutebrowser}; do { 
         cd $repo;
-            echo -e "### $repo ###\n";
-            git add . ;
-           if git commit -a -m "updating..."; then
+        echo -e "### $repo ###\n";
+        git add . ;
+        if git commit -a -m "updating..."; then
             git push; 
-           fi
-            echo -e "------------------------------------------------\n";
-        } 
+        fi
+        echo -e "------------------------------------------------\n";
+    } 
 done
 }
