@@ -104,3 +104,16 @@ source /usr/share/doc/fzf/examples/key-bindings.bash
 internet() {
     ping -q 1.1.1.1 -c 3 -w 3 &> /dev/null && echo "yup." || echo "nah."
 }
+
+update_repos() {
+    clear
+    for repo in $HOME/{dotfiles,Scripts,github/qutebrowser}; do { 
+        cd $repo;
+            echo -e "### $repo ###\n";
+            git add . ;
+            git commit -a -m "updating...";
+            git push; 
+            echo -e "------------------------------------------------\n";
+        } 
+done
+}
