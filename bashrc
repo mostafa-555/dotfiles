@@ -106,6 +106,7 @@ internet() {
 }
 
 update_repos() {
+    local currentdir=`pwd`
     clear
     for repo in $HOME/{dotfiles,Scripts,github/qutebrowser}; do { 
         cd $repo;
@@ -117,4 +118,6 @@ update_repos() {
         echo -e "------------------------------------------------\n";
     } 
 done
+
+cd $currentdir
 }
