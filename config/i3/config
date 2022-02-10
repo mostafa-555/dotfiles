@@ -102,7 +102,7 @@ bar {
     separator_symbol "|"
     mode hide
     modifier $mod+mod1
-    font pango:mononoki, FontAwesome bold 9
+    font pango:monofur, FontAwesome bold 10
     position top
     status_command i3status -c $HOME/.config/i3/i3status.conf
 
