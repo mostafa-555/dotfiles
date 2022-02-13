@@ -81,7 +81,7 @@ mode "$systemctl"{
 }
 
 #specifying the colors 
-set $black  #000000
+set $black  #0a0a0a
 set $white  #C9A970
 set $gray   #4e4e4e
 	
