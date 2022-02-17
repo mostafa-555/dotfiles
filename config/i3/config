@@ -81,10 +81,12 @@ mode "$systemctl"{
 }
 
 #specifying the colors 
-set $black  #0a0a0a
-#set $white  #C9A970
-set $white  #FEFEFE
-set $gray   #4e4e4e
+#set $black  #0a0a0a
+#set $white  #FEFEFE
+#set $gray   #4e4e4e
+set_from_resource $black i3wm.color0 
+set_from_resource $white i3wm.color7 
+set_from_resource $gray i3wm.color8
 	
 # class                 border  backgr. text    indicator child_border
 client.focused          $white  $black  $white  $white    $white
@@ -101,7 +103,7 @@ bar {
     #it makes the tray  icons bigger 
     #tray_padding 4
     separator_symbol "|"
-    mode hide
+    #mode hide
     modifier $mod+mod1
     font pango:monofur, FontAwesome bold 10
     position top
