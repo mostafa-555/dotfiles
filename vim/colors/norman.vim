@@ -44,7 +44,7 @@ hi Keyword            ctermbg=NONE       ctermfg=255
 hi Label              ctermbg=NONE       ctermfg=255
 hi LineNr             ctermfg=240         ctermbg=NONE
 hi Macro              ctermbg=NONE       ctermfg=255
-hi MatchParen         ctermbg=NONE       ctermfg=255
+hi MatchParen         ctermbg=NONE       ctermfg=39
 hi ModeMsg            ctermbg=NONE       ctermfg=255
 hi MoreMsg            ctermbg=NONE       ctermfg=255
 hi NonText            ctermbg=NONE       ctermfg=255

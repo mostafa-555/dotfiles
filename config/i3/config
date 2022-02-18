@@ -4,13 +4,10 @@ set $terminal x-terminal-emulator
 set $nsi --no-startup-id
 set $scripts ~/Scripts
 
-
-#autostart 
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace Ubuntu Mono 12
-font pango:monospace mononoki 12
+font pango:monospace mononoki 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -19,66 +16,56 @@ floating_modifier $mod
 bindsym $mod+Escape kill
 
 # change focus
-    bindsym $mod+h focus left
-    bindsym $mod+j focus down
-    bindsym $mod+k focus up
-    bindsym $mod+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
-    bindsym $mod+Shift+h move left
-    bindsym $mod+Shift+j move down
-    bindsym $mod+Shift+k move up
-    bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
 
 #..
 popup_during_fullscreen smart
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+slash layout toggle tabbed stacked split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-bindsym $mod+Shift+a focus child
-
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 #reload i3
 bindsym $mod+r reload
-	
+
 #shutdown, restart, lock
 set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
 bindsym Ctrl+mod1+Delete mode "$systemctl"
 mode "$systemctl"{
-	bindsym r exec systemctl reboot -i  
-	bindsym s exec systemctl suspend -i, mode "default", exec i3lock -c 080808  
-	bindsym p exec systemctl poweroff -i
-	bindsym l exec  i3lock --color 080808, mode "default"
-	bindsym e exit 
+    bindsym r exec systemctl reboot -i  
+        bindsym s exec systemctl suspend -i, mode "default", exec i3lock -c 080808  
+        bindsym p exec systemctl poweroff -i
+        bindsym l exec  i3lock --color 080808, mode "default"
+        bindsym e exit 
 
-	bindsym Escape mode "default"
-	bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
 }
+
+#focus follow mouse no ^_^
+focus_follows_mouse no
+
+#speed up the cursor
+exec $nsi xset r rate 250 45
 
 #specifying the colors 
 #set $black  #0a0a0a
@@ -87,7 +74,7 @@ mode "$systemctl"{
 set_from_resource $black i3wm.color0 
 set_from_resource $white i3wm.color7 
 set_from_resource $gray i3wm.color8
-	
+
 # class                 border  backgr. text    indicator child_border
 client.focused          $white  $black  $white  $white    $white
 client.focused_inactive $black  $black  $white  #99ff99   $black
@@ -98,63 +85,49 @@ client.background       #ffffff
 
 #I3BAR
 bar {
-    #height 20
+    status_command i3status -c $HOME/.config/i3/i3status.conf
+    font pango:mononoki, FontAwesome bold 9
     workspace_min_width 40
-    #it makes the tray  icons bigger 
-    #tray_padding 4
     separator_symbol "|"
     #mode hide
     modifier $mod+mod1
-    font pango:monofur, FontAwesome bold 10
     position top
-    status_command i3status -c $HOME/.config/i3/i3status.conf
 
     colors {
         background $black
         statusline $white
         separator  $white
-#                          Border      background     text
-        focused_workspace  $white      $white         $black
-        active_workspace   $black      $white         $black
-        inactive_workspace $black      $black         $white
-        urgent_workspace   #2f343a     #900000        #000000
-        binding_mode       $white      $white         $black
-        }
+#                          Border       background      text
+        focused_workspace  $white       $white          $black
+        active_workspace   $black       $white          $black
+        inactive_workspace $black       $black          $white
+        urgent_workspace   #2f343a      #900000         #000000
+        binding_mode       $white       $white          $black
     }
-
-#hide i3bar
-bindsym $mod+b bar mode toggle 
-
-#focus follow mouse no ^_^
-focus_follows_mouse no
-
-#speed up the cursor
-exec $nsi xset r rate 250 45
-
-
+}
 
 #----------------------------------WINDOWS-------------------------------------
 #default orientaion of the windows
 default_orientation vertical
 
 # remove the titlebar for the windows
-    for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 1
 
 #assign windows to workspaces
-    assign [class="Firefox"] $ws2
-    assign [class="qutebrowser"] $ws2
-    assign [class="mpv"] $ws3
-    for_window [title="*.pdf"] move container to workspace $ws4, floating disable
-    assign [class="Anki"] $ws4
-    assign [class="PacketTracer"] $ws5
+assign [class="Firefox"] $ws2
+assign [class="qutebrowser"] $ws2
+assign [class="mpv"] $ws3
+assign [class="Zathura"] $ws4
+assign [class="Anki"] $ws4
+assign [class="PacketTracer"] $ws5
 
 #make some windows floating
-    for_window [class=".*"] floating enable
-    for_window [workspace=$ws1 class="Xfce4-terminal"] floating disable
-    #for_window [class="Firefox"] floating disable
-    for_window [class="mpv"] resize set 960 360
-    for_window [class="Pcmanfm"] resize set 480 640, move position center
-    for_window [workspace=$ws5] floating disable
+#for_window [class=".*"] floating enable, move position center
+for_window [workspace=$ws1 class="Xfce4-terminal"] floating disable
+#for_window [class="Firefox"] floating disable
+for_window [class="mpv"] resize set 960 360
+for_window [class="Pcmanfm"] resize set 480 640, move position center
+for_window [workspace=$ws5] floating disable
 
 #---------------------------------WORKSPACES-----------------------------------
 set $ws1 1:Terminals
@@ -162,6 +135,11 @@ set $ws2 2:Browser
 set $ws3 3:Media
 set $ws4 4
 set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
 # switch to workspace
 bindsym $mod+period workspace next
@@ -171,66 +149,82 @@ bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 #enable back and forth 
 workspace_auto_back_and_forth yes
-
-#make workspace 2 tabbed
-for_window [workspace=$ws2] layout tabbed
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
 #-----------------------------------GAPS--------------------------------------
 #gaps 
-    #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-    #bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 3
-    #
-    #gaps inner 5
-    #gaps outer 4
-    #bindsym $mod+i			gaps inner current minus1
-    #bindsym $mod+Shift+i		gaps inner current plus 1
-    #bindsym $mod+o			gaps outer current minus1
-    #bindsym $mod+Shift+o		gaps outer current plus 1
-    #smart_gaps on
+#bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
+#bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 3
+#
+#gaps inner 5
+#gaps outer 4
+#bindsym $mod+i			gaps inner current minus1
+#bindsym $mod+Shift+i		gaps inner current plus 1
+#bindsym $mod+o			gaps outer current minus1
+#bindsym $mod+Shift+o		gaps outer current plus 1
+#smart_gaps on
 # Activate smart borders (always)
-    #smart_borders on
+#smart_borders on
 
 #-------------------------------BINDING KEYS----------------------------------
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+slash layout toggle tabbed stacked split
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
 # enter fullscreen mode for the focused container
-    bindsym $mod+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+Shift+a focus child
+
+#hide i3bar
+bindsym $mod+b bar mode toggle 
 
 # opening up a config file 
-    bindsym $mod+BackSpace exec ~/Scripts/dmconf 
+bindsym $mod+BackSpace exec ~/Scripts/dmconf 
 
 #wifi switcher
-    bindsym XF86RFKill exec wifi toggle
+bindsym XF86RFKill exec wifi toggle
 
 # keybinds for starting something..
-    bindsym Print  exec $nsi xfce4-screenshooter
-    bindsym $mod+d exec $nsi dmenu_run -l 5 -p "launch:"  -nb "$black" -sb "$black" -sf "$white" -nf "$gray" 
-    bindsym $mod+Return exec $nsi $terminal
-    bindsym $mod+Home exec $nsi pcmanfm
-    bindsym $mod+Ctrl+1 exec $nsi $terminal -e htop 
-    bindsym $mod+F12 exec /home/haman/Scripts/wifi-connect.sh
+bindsym Print  exec $nsi xfce4-screenshooter
+bindsym $mod+d exec $nsi dmenu_run -l 5 -p "launch:"  -nb "$black" -sb "$black" -sf "$white" -nf "$gray" 
+bindsym $mod+Return exec $nsi $terminal
+bindsym $mod+Home exec $nsi pcmanfm
+bindsym $mod+Ctrl+1 exec $nsi $terminal -e htop 
+bindsym $mod+F12 exec /home/haman/Scripts/wifi-connect.sh
 
 #counter strike style
-    bindsym Mod1+q workspace back_and_forth
+bindsym Mod1+q workspace back_and_forth
 #
-    bindsym $mod+t split toggle
+bindsym $mod+t split toggle
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec $nsi light -A 5% ; exec $nsi notify-send -t 250 $(light)
@@ -262,30 +256,29 @@ bindsym $mod+mod1+l resize shrink left 10 px
 #youtube stuff
 bindsym $mod+y exec $nsi youtube_handler.sh
 #bindsym --release $mod+ctrl+y exec mpv --ytdl-format=18 $(xclip -selection clipboard -o)
+
+#you know why you did this ^_^
+bindsym $mod+x exec i3lock -c 080808 
 #-----------------------------------------------------------------------------
 
 #testing
-for_window [title="dropdown"] floating enable, move scratchpad, border pixel 3
+for_window [title="dropdown"] floating enable, move scratchpad, border pixel 2
 exec $nsi xfce4-terminal --title dropdown 
 bindsym $mod+u [title="dropdown"] scratchpad show, resize set 1024 480, move position center
 
 set $resize :resizing
 bindsym $mod+apostrophe mode "$resize"
 mode "$resize" {
-bindsym shift+l resize grow right 10 px
-bindsym shift+k resize grow up 10 px
-bindsym shift+j resize grow down 10 px
-bindsym shift+h resize grow left 10 px
-bindsym h resize shrink right 10 px
-bindsym j resize shrink up 10 px
-bindsym k resize shrink down 10 px
-bindsym l resize shrink left 10 px
+    bindsym shift+l resize grow right 10 px
+        bindsym shift+k resize grow up 10 px
+        bindsym shift+j resize grow down 10 px
+        bindsym shift+h resize grow left 10 px
+        bindsym h resize shrink right 10 px
+        bindsym j resize shrink up 10 px
+        bindsym k resize shrink down 10 px
+        bindsym l resize shrink left 10 px
 
-bindsym Return mode "default"
-bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
-
-
-#you know why you did this ^_^
-bindsym $mod+x exec i3lock -c 080808 
