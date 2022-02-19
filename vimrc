@@ -42,7 +42,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'chrisbra/Colorizer'
-Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 call plug#end()
 
