@@ -33,7 +33,9 @@ map <C-n> :bnext <CR>
 map <C-p> :bprevious <CR>
 
 set background=dark
-colorscheme norman
+"colorscheme norman
+" I'm going to use these pywal weired things for a while...
+colorscheme wal
 
 """""""""""""""""""""""""""""""""
 "#######PLUGINS#######

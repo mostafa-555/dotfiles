@@ -7,7 +7,7 @@ set $scripts ~/Scripts
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace Ubuntu Mono 12
-font pango:monospace mononoki 10
+font pango:mononoki, FontAwesome bold 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -86,7 +86,6 @@ client.background       #ffffff
 #I3BAR
 bar {
     status_command i3status -c $HOME/.config/i3/i3status.conf
-    font pango:mononoki, FontAwesome bold 9
     workspace_min_width 40
     separator_symbol "|"
     #mode hide
