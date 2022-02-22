@@ -122,11 +122,14 @@ assign [class="PacketTracer"] $ws5
 
 #make some windows floating
 #for_window [class=".*"] floating enable, move position center
-for_window [workspace=$ws1 class="Xfce4-terminal"] floating disable
 #for_window [class="Firefox"] floating disable
 for_window [class="mpv"] resize set 960 360
 for_window [class="Pcmanfm"] resize set 480 640, move position center
 for_window [workspace=$ws5] floating disable
+for_window [window_type="dialog"] floating enable
+
+#PACKETTRACER
+for_window[title="PDU Information at Device:.*"] floating enable
 
 #---------------------------------WORKSPACES-----------------------------------
 set $ws1 1:Terminals
