@@ -49,7 +49,7 @@ export LESS_TERMCAP_se=$'\e[0m'
 
 # variables
 export EDITOR="vim"
-[ -d "$HOME/Scripts" ] && export PATH="$PATH:$HOME/Scripts"
+#[ -d "$HOME/Scripts" ] && export PATH="$PATH:$HOME/Scripts"
 
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && . /usr/share/doc/fzf/examples/key-bindings.bash
 

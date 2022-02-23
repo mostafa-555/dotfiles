@@ -15,6 +15,8 @@ set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 "split below, right.
 set splitbelow splitright
 set scrolloff=12
+" show arabic text in the proper way.
+set termbidi
 
 "Goyo
 nnoremap <leader>g :Goyo<CR>
