@@ -116,6 +116,7 @@ for_window [class=".*"] border pixel 1
 assign [class="Firefox"] $ws2
 assign [class="qutebrowser"] $ws2
 assign [class="mpv"] $ws3
+assign [class="Sxiv"] $ws3
 assign [class="Zathura"] $ws4
 assign [class="Anki"] $ws4
 assign [class="PacketTracer"] $ws5
