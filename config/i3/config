@@ -71,16 +71,16 @@ exec $nsi xset r rate 250 45
 #set $black  #0a0a0a
 #set $white  #FEFEFE
 #set $gray   #4e4e4e
-set_from_resource $black i3wm.color0 
-set_from_resource $white i3wm.color7 
-set_from_resource $gray i3wm.color8
+set_from_resource $bg       i3wm.background
+set_from_resource $fg       i3wm.foreground
+set_from_resource $gray     i3wm.color8
 
-# class                 border  backgr. text    indicator child_border
-client.focused          $white  $black  $white  $white    $white
-client.focused_inactive $black  $black  $white  #99ff99   $black
-client.unfocused        $white  $black  $gray   $gray     $gray
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# class                 border      backgr      text        indicator     child_border
+client.focused          $fg         $bg         $fg         $fg           $fg
+client.focused_inactive $bg         $bg         $fg         $gray         $gray
+client.unfocused        $fg         $bg         $gray       $gray         $gray
+client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
+client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
 
 #I3BAR
@@ -93,15 +93,15 @@ bar {
     position top
 
     colors {
-        background $black
-        statusline $white
-        separator  $white
+        background $bg
+        statusline $fg
+        separator  $fg
 #                          Border       background      text
-        focused_workspace  $white       $white          $black
-        active_workspace   $black       $white          $black
-        inactive_workspace $black       $black          $white
+        focused_workspace  $gray        $fg             $bg
+        active_workspace   $bg          $fg             $bg
+        inactive_workspace $bg          $bg             $fg
         urgent_workspace   #2f343a      #900000         #000000
-        binding_mode       $white       $white          $black
+        binding_mode       $gray        $fg             $bg
     }
 }
 
@@ -110,7 +110,7 @@ bar {
 default_orientation vertical
 
 # remove the titlebar for the windows
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 2
 
 #assign windows to workspaces
 assign [class="Firefox"] $ws2
@@ -124,12 +124,13 @@ assign [class="PacketTracer"] $ws5
 #make some windows floating
 #for_window [class=".*"] floating enable, move position center
 #for_window [class="Firefox"] floating disable
-for_window [class="mpv"] resize set 960 360
-for_window [class="Pcmanfm"] resize set 480 640, move position center
+for_window [class="mpv|Sxiv"] workspace $ws3, floating enable, move position center
+for_window [class="Zathura"] workspace $ws4
+for_window [class="Pcmanfm"] resize set 480 360, move position center
 for_window [workspace=$ws5] floating disable
 for_window [window_type="dialog"] floating enable
 
-#PACKETTRACER
+# PACKETTRACER
 for_window[title="PDU Information at Device:.*"] floating enable
 
 #---------------------------------WORKSPACES-----------------------------------
@@ -137,7 +138,7 @@ set $ws1 1:Terminals
 set $ws2 2:Browser
 set $ws3 3:Media
 set $ws4 4
-set $ws5 5
+set $ws5 5:PacketTracer
 set $ws6 6
 set $ws7 7
 set $ws8 8
@@ -159,7 +160,7 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 #enable back and forth 
-workspace_auto_back_and_forth yes
+#workspace_auto_back_and_forth yes
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -176,16 +177,16 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #-----------------------------------GAPS--------------------------------------
 #gaps 
 #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-#bindsym $mod+Shift+f gaps inner all toggle 5; gaps outer all toggle 3
+bindsym $mod+Shift+f gaps inner all toggle 15
 #
-#gaps inner 5
-#gaps outer 4
-#bindsym $mod+i			gaps inner current minus1
-#bindsym $mod+Shift+i		gaps inner current plus 1
-#bindsym $mod+o			gaps outer current minus1
-#bindsym $mod+Shift+o		gaps outer current plus 1
+gaps inner 10
+#gaps outer 5
+bindsym $mod+i			gaps inner current minus1
+bindsym $mod+Shift+i		gaps inner current plus 1
+bindsym $mod+o			gaps outer current minus1
+bindsym $mod+Shift+o		gaps outer current plus 1
 #smart_gaps on
-# Activate smart borders (always)
+#Activate smart borders (always)
 #smart_borders on
 
 #-------------------------------BINDING KEYS----------------------------------
@@ -218,7 +219,7 @@ bindsym XF86RFKill exec wifi toggle
 
 # keybinds for starting something..
 bindsym Print  exec $nsi xfce4-screenshooter
-bindsym $mod+d exec $nsi dmenu_run -l 5 -p "launch:"  -nb "$black" -sb "$white" -sf "$black" -nf "$white" 
+bindsym $mod+d exec $nsi dmenu_run -l 5 -p "run:"
 bindsym $mod+Return exec $nsi $terminal
 bindsym $mod+Home exec $nsi pcmanfm
 bindsym $mod+Ctrl+1 exec $nsi $terminal -e htop 
@@ -285,3 +286,5 @@ mode "$resize" {
         bindsym Escape mode "default"
 }
 
+# idk
+focus_on_window_activation urgent
