@@ -128,6 +128,7 @@ for_window [class="mpv|Sxiv"] workspace $ws3, floating enable, move position cen
 for_window [class="Zathura"] workspace $ws4
 for_window [class="Pcmanfm"] resize set 480 360, move position center
 for_window [workspace=$ws5] floating disable
+for_window [class="TelegramDesktop"] floating enable, resize set 520 720
 for_window [window_type="dialog"] floating enable
 
 # PACKETTRACER
