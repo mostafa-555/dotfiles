@@ -124,7 +124,7 @@ assign [class="PacketTracer"] $ws5
 #make some windows floating
 #for_window [class=".*"] floating enable, move position center
 #for_window [class="Firefox"] floating disable
-for_window [class="mpv|Sxiv"] workspace $ws3, floating enable, move position center
+for_window [class="mpv|Sxiv"] workspace $ws3, floating enable, move absolute position center
 for_window [class="Zathura"] workspace $ws4
 for_window [class="Pcmanfm"] resize set 480 360, move position center
 for_window [workspace=$ws5] floating disable
