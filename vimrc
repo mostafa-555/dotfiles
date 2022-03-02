@@ -18,6 +18,10 @@ set scrolloff=12
 " show arabic text in the proper way.
 set termbidi
 
+" from TFL
+set nowrap
+set  sidescroll=999 sidescrolloff=999
+
 "Goyo
 nnoremap <leader>g :Goyo<CR>
 
