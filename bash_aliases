@@ -8,7 +8,7 @@ alias dt='cd /home/haman/Desktop'
 alias free='free -h'
 alias cp='cp -v'
 alias df='df -h'
-alias du='du -h'
+alias du='du -h --block-size=M'
 alias grep='grep --color=auto'
 
 alias lss='exa -l --color=auto --group-directories-first --icons'
