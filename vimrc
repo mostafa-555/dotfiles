@@ -6,7 +6,7 @@ filetype plugin indent on
 set nu
 set incsearch
 set hlsearch
-set ruler
+set noruler
 set relativenumber
 set wildmenu
 set noswapfile
@@ -41,7 +41,7 @@ map <C-p> :bprevious <CR>
 set background=dark
 "colorscheme norman
 " I'm going to use these pywal weired things for a while...
-colorscheme wal
+ colorscheme wal
 
 """""""""""""""""""""""""""""""""
 "#######PLUGINS#######
