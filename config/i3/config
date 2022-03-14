@@ -64,9 +64,6 @@ mode "$systemctl"{
 #focus follow mouse no ^_^
 focus_follows_mouse no
 
-#speed up the cursor
-exec $nsi xset r rate 250 45
-
 #specifying the colors 
 #set $black  #0a0a0a
 #set $white  #FEFEFE
@@ -130,6 +127,7 @@ for_window [class="Pcmanfm"] resize set 480 360, move position center
 for_window [workspace=$ws5] floating disable
 for_window [class="TelegramDesktop"] floating enable, resize set 520 720
 for_window [window_type="dialog"] floating enable
+for_window [class="Gcolor3"] floating enable
 
 # PACKETTRACER
 for_window[title="PDU Information at Device:.*"] floating enable

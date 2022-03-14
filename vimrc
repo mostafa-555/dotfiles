@@ -60,3 +60,5 @@ nnoremap <leader>p :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") .
 
 " quickly edit colorscheme
 nnoremap <leader>t :wincmd v<bar> :find $HOME/.vim/colors/norman.vim<CR>
+
+map <silent><leader>c :w! \| !xelatex "<c-r>%"<CR>
