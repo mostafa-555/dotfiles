@@ -49,16 +49,24 @@ set background=dark
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'chrisbra/Colorizer'
+Plug 'chrisbra/Colorizer'
 Plug 'junegunn/goyo.vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
 
 
-nnoremap <leader>p :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+"nnoremap <leader>p :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
 " quickly edit colorscheme
 nnoremap <leader>t :wincmd v<bar> :find $HOME/.vim/colors/norman.vim<CR>
 
 map <silent><leader>c :w! \| !xelatex "<c-r>%"<CR>
+
+
+" just testing 
+function! Gruvbox()
+    colorscheme gruvbox 
+    hi normal ctermbg=none
+endfunction
+call Gruvbox()
