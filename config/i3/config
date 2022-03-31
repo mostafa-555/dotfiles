@@ -68,14 +68,21 @@ focus_follows_mouse no
 #set $black  #0a0a0a
 #set $white  #FEFEFE
 #set $gray   #4e4e4e
-set_from_resource $bg       i3wm.background
-set_from_resource $fg       i3wm.foreground
-set_from_resource $gray     i3wm.color8
+set_from_resource $bg           i3wm.background
+set_from_resource $fg           i3wm.foreground
+set_from_resource $color1       i3wm.color1
+set_from_resource $color2       i3wm.color2
+set_from_resource $color3       i3wm.color3
+set_from_resource $color4       i3wm.color4
+set_from_resource $color5       i3wm.color5
+set_from_resource $color6       i3wm.color6
+set_from_resource $color7       i3wm.color7
+set_from_resource $color8       i3wm.color8
 
 # class                 border      backgr      text        indicator     child_border
-client.focused          $fg         $bg         $fg         $fg           $fg
+client.focused          $fg         $bg         $fg         $color4       $color4
 client.focused_inactive $bg         $bg         $fg         $bg           $bg  
-client.unfocused        $fg         $bg         $gray       $bg           $bg  
+client.unfocused        $fg         $bg         $gray       $color1       $color1
 client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
 client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
@@ -92,13 +99,13 @@ bar {
     colors {
         background $bg
         statusline $fg
-        separator  $fg
+        separator  $color1
 #                          Border       background      text
-        focused_workspace  $fg          $fg             $bg
+        focused_workspace  $color8      $color8         $bg
         active_workspace   $bg          $fg             $bg
-        inactive_workspace $bg          $bg             $fg
+        inactive_workspace $fg          $fg             $bg    
         urgent_workspace   #2f343a      #900000         #000000
-        binding_mode       $fg          $fg             $bg } }
+        binding_mode       $color8      $color8         $bg } }
 #----------------------------------WINDOWS-------------------------------------
 #default orientaion of the windows
 default_orientation vertical

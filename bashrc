@@ -53,3 +53,4 @@ export EDITOR="vim"
 
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && . /usr/share/doc/fzf/examples/key-bindings.bash
 
+#bind '"\C-p": "\C-e\C-u xclip -sel clipboard -i <<"EOF"\n\C-y\nEOF\n\C-y"'
