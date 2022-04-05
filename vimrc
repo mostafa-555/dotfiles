@@ -28,6 +28,7 @@ nnoremap <leader>g :Goyo<CR>
 "fzf
 source /usr/share/doc/fzf/examples/fzf.vim
 nnoremap <leader>f :FZF<CR>
+nnoremap <leader>b :Buffers<CR>
 
 "source vimrc
 nnoremap <leader>r :source $MYVIMRC<CR>

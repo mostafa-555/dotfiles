@@ -1,3 +1,4 @@
+#!/bin/sh
 alias ..='cd ..'
 alias 2..='cd ../..'
 alias 3..='cd ../../..' 
@@ -14,4 +15,6 @@ alias grep='grep --color=auto'
 alias lss='exa -l --color=auto --group-directories-first --icons'
 alias startx='startx &> /dev/null'
 alias cc='file=$(find $HOME/dotfiles/* | fzf) && vi $file ; unset file'
-
+# neomutt always miss up wal colors..
+#[ -f "$HOME/.cache/wal/sequences" ] && alias neomutt=' (sleep 0.100 ; cat ~/.cache/wal/sequences) & neomutt'
+alias neomutt='TERM=screen-256color neomutt'

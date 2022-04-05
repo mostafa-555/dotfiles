@@ -78,11 +78,13 @@ set_from_resource $color5       i3wm.color5
 set_from_resource $color6       i3wm.color6
 set_from_resource $color7       i3wm.color7
 set_from_resource $color8       i3wm.color8
+set $orange                     #FC5B29
+set $blue                       #637F97
 
 # class                 border      backgr      text        indicator     child_border
-client.focused          $fg         $bg         $fg         $color4       $color4
-client.focused_inactive $bg         $bg         $fg         $bg           $bg  
-client.unfocused        $fg         $bg         $gray       $color1       $color1
+client.focused          $fg         $bg         $fg         $orange       $orange
+client.focused_inactive $bg         $bg         $fg         $blue         $blue  
+client.unfocused        $fg         $bg         $gray       $blue         $blue  
 client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
 client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
@@ -101,7 +103,7 @@ bar {
         statusline $fg
         separator  $color1
 #                          Border       background      text
-        focused_workspace  $color8      $color8         $bg
+        focused_workspace  $color3      $color3         $bg    
         active_workspace   $bg          $fg             $bg
         inactive_workspace $fg          $fg             $bg    
         urgent_workspace   #2f343a      #900000         #000000
@@ -180,9 +182,9 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #-----------------------------------GAPS--------------------------------------
 #gaps 
 #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-bindsym $mod+Shift+f gaps inner all toggle 15
+bindsym $mod+Shift+f gaps inner all toggle 20
 #
-gaps inner 5
+gaps inner 40
 #gaps outer 5
 bindsym $mod+i			gaps inner current minus1
 bindsym $mod+Shift+i		gaps inner current plus 1
