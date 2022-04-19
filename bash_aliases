@@ -4,7 +4,7 @@ alias 2..='cd ../..'
 alias 3..='cd ../../..' 
 alias 4..='cd ../../../..'
 alias dl='cd ~/Downloads'
-alias dt='cd /home/haman/Desktop'
+alias dt='cd ~/Desktop'
 
 alias free='free -h'
 alias cp='cp -v'
