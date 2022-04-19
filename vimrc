@@ -22,6 +22,14 @@ set termbidi
 set nowrap
 set  sidescroll=999 sidescrolloff=999
 
+set background=dark
+"colorscheme norman
+" I'm going to use these pywal weired things for a while...
+ colorscheme wal
+
+"""""""""""""""""""""""""""""""""
+"#######MAPPING#######
+"""""""""""""""""""""""""""""""
 "Goyo
 nnoremap <leader>g :Goyo<CR>
 
@@ -39,10 +47,8 @@ nnoremap <leader>e :wincmd v<bar> :e $MYVIMRC<CR>
 map <C-n> :bnext <CR>
 map <C-p> :bprevious <CR>
 
-set background=dark
-"colorscheme norman
-" I'm going to use these pywal weired things for a while...
- colorscheme wal
+" !python3 % executes the current file with Python.
+nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
 
 """""""""""""""""""""""""""""""""
 "#######PLUGINS#######
@@ -53,6 +59,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'junegunn/goyo.vim'
 Plug 'morhetz/gruvbox'
+"some snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+"auto complete for pytho 
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 
